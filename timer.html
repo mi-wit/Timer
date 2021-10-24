@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Twój timer!</title>
+    <script src="timer.js"></script>
+    <link rel="stylesheet" href="timer.css"></link>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="title">
+            <h1>TIMER</h1>
+            <h2>Time waits for no one</h2>
+        </div>
+        <p>
+            <span><input id="minutes" type="range" min="0" max="60"></input><span>minutes</span></span>
+            <span><input id="seconds" type="range" min="0" max="59"></input><span>seconds</span></span>
+        </p>
+        <div class="timer-display">
+            <span id="minutes-display"></span>
+            <span>m :</span>
+            <span id="seconds-display"></span>
+            <span>s</span>
+        </div>
+        <div class="button">
+            <button id="button-start">Start</button>
+            <button id="button-stop">Stop</button>
+            <button id="button-reset">Reset</button>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
