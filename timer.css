@@ -45,13 +45,18 @@ h1 {
 .button button {
     cursor: pointer;
     padding: 18px 10px;
-    width: 180px;
-    margin: 10px;
+    width: 360px;
+    height: 100px;
     background-color: var(--second-color);
     outline: none;
     font-size: 1.2em;
     border: transparent;
     text-decoration: none;
+    ;
+}
+
+.button span {
+    font-size: xx-large;
 }
 
 
