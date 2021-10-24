@@ -16,16 +16,18 @@ window.onload = function() {
 
     var notificationSoundPath = "./session.mp3";
 
+    var colors = { background: 'var(--background-color)', second: 'var(--second-color)', third: 'var(--third-color)' }
 
     initliaizeDisplayValues();
 
     buttonStart.onclick = function() {
         startTimer();
-
+        displayTimerStartButtonColors();
     }
 
     buttonStop.onclick = function() {
         stopTimer(Interval);
+        displayTimerStopButtonsColors();
     }
 
 
@@ -34,6 +36,7 @@ window.onload = function() {
         currentSecond = settedSeconds;
         currentMinute = settedMinutes;
         updateDisplayNumbers();
+        displayTimerStopButtonsColors();
     }
 
 
@@ -129,5 +132,15 @@ window.onload = function() {
     function playSound(url) {
         const audio = new Audio(url);
         audio.play();
+    }
+
+    function displayTimerStartButtonColors() {
+        buttonStart.style.backgroundColor = colors['third'];
+        buttonStop.style.backgroundColor = colors['second'];
+    }
+
+    function displayTimerStopButtonsColors() {
+        buttonStart.style.backgroundColor = colors['second'];
+        buttonStop.style.backgroundColor = colors['third'];
     }
 }
