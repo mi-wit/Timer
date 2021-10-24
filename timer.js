@@ -20,10 +20,8 @@ window.onload = function() {
     initliaizeDisplayValues();
 
     buttonStart.onclick = function() {
-        settedSeconds = currentSecond = imputSeconds.value;
-        settedMinutes = currentMinute = imputMinutes.value;
-        clearInterval(Interval);
-        Interval = setInterval(startTimer, 1000);
+        startTimer();
+
     }
 
     buttonStop.onclick = function() {
@@ -50,30 +48,48 @@ window.onload = function() {
     }
 
     function startTimer() {
+        settedSeconds = currentSecond = imputSeconds.value;
+        settedMinutes = currentMinute = imputMinutes.value;
+        clearInterval(Interval);
+        Interval = setInterval(loopTimer, 1000);
+    }
 
-        if (currentSecond <= 0) {
-            currentMinute--;
-            currentSecond = 60;
-        }
-        currentSecond--;
+    function loopTimer() {
 
-        if (currentMinute <= 0 && currentSecond <= 0) {
+        decrementTime();
+
+        if (timeEnded()) {
             stopTimer(Interval);
             playSound(notificationSoundPath);
-            alert("time ended");
         }
 
 
         var timerDisplay = document.getElementsByClassName("timer-display")[0];
-        if (currentMinute <= 0 && currentSecond <= 5) {
+        if (timeCloseToEnd()) {
             timerDisplay.style.backgroundColor = "red";
         } else {
             timerDisplay.style.backgroundColor = "white";
         }
 
         updateDisplayNumbers();
+
+        function timeEnded() {
+            return currentMinute <= 0 && currentSecond <= 0;
+        }
+
+        function timeCloseToEnd() {
+            return currentMinute <= 0 && currentSecond <= 5;
+        }
     }
 
+
+    function decrementTime() {
+        if (currentSecond <= 0) {
+            currentMinute--;
+            currentSecond = 60;
+        }
+        currentSecond--;
+    }
 
     function updateDisplayNumbers() {
         if (currentSecond <= 9)
@@ -89,9 +105,13 @@ window.onload = function() {
         else
             minutesDisplay.innerHTML = currentMinute;
 
+        updateSliders();
+
+    }
+
+    function updateSliders() {
         imputSeconds.value = currentSecond;
         imputMinutes.value = currentMinute;
-
     }
 
     function initliaizeDisplayValues() {
