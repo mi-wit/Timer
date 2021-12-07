@@ -1,0 +1,12 @@
+<!-- Toolbar -->
+<div class="toolbar" role="banner">
+    <h1>Timer</h1>
+</div>
+
+<div class="content" role="main">
+    <cd-timer format="intelli" [countdown]=true [startTime]=sliderTime.value (onComplete)="timeEnded()" #basicTimer></cd-timer>
+    <mat-slider min="1" max="100" step="1" value="20" thumbLabel tickInterval="1" (change)=setInterval(sliderTime.value) #sliderTime></mat-slider>
+    <button (click)="toggleResume()" #toggleButton>Stop</button>
+    <button (click)="setStop()" #reset>Reset</button>
+    <mat-progress-spinner [value]=basicTimer.get().tick_count></mat-progress-spinner>
+</div>
