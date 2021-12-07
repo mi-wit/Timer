@@ -1,4 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { MatButton, MatButtonModule } from '@angular/material/button';
 import { CdTimerComponent, CdTimerModule } from 'angular-cd-timer';
 
 @Component({
@@ -13,18 +14,21 @@ export class AppComponent {
   @ViewChild('basicTimer', {read: CdTimerComponent})
   basicTimer!: CdTimerComponent;
   @ViewChild('toggleButton')
-  toggleButton!: ElementRef;
-
-
+  toggleButton!: MatButton;
+  @ViewChild('reset')
+  resetButton!: MatButton;
+  
   setInterval(sliderTime: any) {
     this.basicTimer.startTime = sliderTime;
     this.setStop();
   }
   
   timeEnded() {
+    this.setStop();
+    this.playAudio();
     console.log("koniec czasu");
   }
-
+  
   toggleResume() {
     if (this.counting) {
       this.setPause();
@@ -37,18 +41,27 @@ export class AppComponent {
   setStop() {
     this.setPause();
     this.basicTimer.reset();
-    console.log(this.basicTimer.get().tick_count);
+    this.toggleButton._elementRef.nativeElement.innerHTML = "Start";
+    this.resetButton.disabled = true;
   }
-
+  
   private setPause() {
     this.counting = false;
     this.basicTimer.stop();
-    this.toggleButton.nativeElement.innerHTML = "Resume";
+    this.toggleButton._elementRef.nativeElement.innerHTML = "Resume";
   }
   
   private setCounting() {
     this.counting = true;
     this.basicTimer.resume();
-    this.toggleButton.nativeElement.innerHTML = "Stop";
+    this.toggleButton._elementRef.nativeElement.innerHTML = "Stop";
+    this.resetButton.disabled = false;
+  }
+
+  playAudio(){
+    let audio = new Audio();
+    audio.src = "../../../assets/audio/session.mp3";
+    audio.load();
+    audio.play();
   }
 }

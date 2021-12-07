@@ -1,12 +1,23 @@
-<!-- Toolbar -->
-<div class="toolbar" role="banner">
-    <h1>Timer</h1>
-</div>
+<mat-toolbar color="primary">
+    <span>Timer</span>
+</mat-toolbar>
 
 <div class="content" role="main">
+
+
+    <div style="height: 100px;">
+        <mat-progress-spinner [value]=basicTimer.get().tick_count></mat-progress-spinner>
+        <div style="position:relative; top: -97px; left: 12px;">
+            <button mat-fab (click)="toggleResume()" #toggleButton>Stop</button>
+        </div>
+
+    </div>
+
     <cd-timer format="intelli" [countdown]=true [startTime]=sliderTime.value (onComplete)="timeEnded()" #basicTimer></cd-timer>
-    <mat-slider min="1" max="100" step="1" value="20" thumbLabel tickInterval="1" (change)=setInterval(sliderTime.value) #sliderTime></mat-slider>
-    <button (click)="toggleResume()" #toggleButton>Stop</button>
-    <button (click)="setStop()" #reset>Reset</button>
-    <mat-progress-spinner [value]=basicTimer.get().tick_count></mat-progress-spinner>
+    <mat-slider min="1" max="100" step="1" value="20" thumbLabel tickInterval="1" color="primary" (change)=setInterval(sliderTime.value) #sliderTime></mat-slider>
+    <button mat-button (click)="setStop()" #reset>Reset</button>
+
+
+
+
 </div>
