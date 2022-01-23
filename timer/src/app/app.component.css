@@ -16,33 +16,6 @@ p {
     flex: 1;
 }
 
-.content {
-    /* font-size: xx-large; */
-    display: flex;
-    margin: 30px auto 32px;
-    padding: 0 16px;
-    max-width: 960px;
-    flex-direction: column;
-    align-items: center;
-}
-
-.content * {
-    margin: 10px;
-}
-
-svg.material-icons {
-    height: 24px;
-    width: auto;
-}
-
-svg.material-icons:not(:last-child) {
-    margin-right: 8px;
-}
-
-.card svg.material-icons path {
-    fill: #888;
-}
-
 a,
 a:visited,
 a:hover {
@@ -54,8 +27,8 @@ a:hover {
     color: #125699;
 }
 
-cd-timer {
-    /* font-size: xx-large; */
+.content * {
+    margin: 10px;
 }
 
 mat-progress-spinner {
@@ -63,20 +36,29 @@ mat-progress-spinner {
     background-color: aliceblue;
 }
 
-
-/* .start-stop {
-    align-items: center;
-    justify-items: center;
+.timer-container {
+    height: 400px;
     display: flex;
-    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0px;
 }
 
-.start-stop button {
-    position: absolute;
-    width: 50px;
-    height: 50px;
+.toggleIcon {
+    padding-top: -16px;
 }
 
-.start-stop mat-progress-spinner {
+.button-icon {
     position: relative;
-} */
+    top: -78px;
+    left: 21px;
+}
+
+.button-progress {
+    height: 100px;
+}
+
+.button-progress * {
+    margin: 0px;
+}

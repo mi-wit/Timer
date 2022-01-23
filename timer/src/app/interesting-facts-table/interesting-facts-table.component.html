@@ -1,0 +1,29 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="disctanceFromSun">
+        <th mat-header-cell *matHeaderCellDef> Disctance from Sun </th>
+        <td mat-cell *matCellDef="let element"> {{element.disctanceFromSun}} km </td>
+    </ng-container>
+
+    <!-- lengthOfYear Column -->
+    <ng-container matColumnDef="lengthOfYear">
+        <th mat-header-cell *matHeaderCellDef> Length Of Year </th>
+        <td mat-cell *matCellDef="let element"> {{element.lengthOfYear}} Earth Days </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

@@ -1,21 +1,41 @@
 <mat-toolbar color="primary">
-    <span>Timer</span>
+    <span>Timer <mat-icon>schedule</mat-icon></span>
 </mat-toolbar>
 
 <div class="content" role="main">
 
+    <mat-tab-group dynamicHeight>
+        <mat-tab label="TIMER">
+            <div class="timer-container">
+                <div class="button-progress">
+                    <mat-progress-spinner [value]=basicTimer.get().tick_count></mat-progress-spinner>
+                    <div class="button-icon">
+                        <button class="toggle-button" mat-fab (click)="toggleResume()"><mat-icon class="toggleIcon" #toggleButton>stop</mat-icon></button>
 
-    <div style="height: 100px;">
-        <mat-progress-spinner [value]=basicTimer.get().tick_count></mat-progress-spinner>
-        <div style="position:relative; top: -97px; left: 12px;">
-            <button mat-fab (click)="toggleResume()" #toggleButton>Stop</button>
-        </div>
+                    </div>
 
-    </div>
+                </div>
 
-    <cd-timer format="intelli" [countdown]=true [startTime]=sliderTime.value (onComplete)="timeEnded()" #basicTimer></cd-timer>
-    <mat-slider min="1" max="100" step="1" value="20" thumbLabel tickInterval="1" color="primary" (change)=setInterval(sliderTime.value) #sliderTime></mat-slider>
-    <button mat-button (click)="setStop()" #reset>Reset</button>
+                <cd-timer format="intelli" [countdown]=true [startTime]=sliderTime.value (onComplete)="timeEnded()" #basicTimer></cd-timer>
+                <mat-slider min="1" max="100" step="1" value="20" thumbLabel tickInterval="1" color="primary" (change)=setInterval(sliderTime.value) #sliderTime></mat-slider>
+                <button mat-button (click)="setStop()" #reset>Reset</button>
+
+                <mat-form-field>
+                    <mat-label for="alarm-sound-select">Choose alarm sound:</mat-label>
+                    <mat-select [(ngModel)]="selectedSound" name="alarm-sounds">
+                        <mat-option *ngFor="let sound of alarm_sounds" [value]="sound">{{sound}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </mat-tab>
+        <mat-tab label="Interesting facts">
+            <p>Here are some interesting facts about Solar System so you don't get bored waiting for timer to ring</p>
+            <app-interesting-facts-table></app-interesting-facts-table>
+
+            <span>Source: <a href="https://solarsystem.nasa.gov/planets/">NASA</a></span>
+        </mat-tab>
+
+    </mat-tab-group>
 
 
 
